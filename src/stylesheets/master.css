@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'myfont';
+    src: url('../font/ZEROGIRL.TTF') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}

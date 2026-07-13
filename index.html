@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="src/stylesheets/output.css">
+    <link rel="stylesheet" href="footer/src/stylesheets/fontello.css">
+    <link rel="stylesheet" href="footer/src/stylesheets/output.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .food {
+            background-color: rgb(235, 231, 26);
+        }
+
+        .head {
+            background-color: rgb(147, 30, 30);
+        }
+
+        .body {
+            background-color: rgb(57, 221, 57);
+        }
+    </style>
+</head>
+
+<body class="overflow-x-hidden overflow-y-hidden h-screen">
+    <div class="w-full h-full flex flex-wrap justify-center bg-gray-800 relative">
+        <!-- scoreboard -->
+        <div class="w-full h-[10%] flex justify-center items-center gap-50 *:mt-15!">
+            <div class="w-20 h-10 bg-white flex justify-center items-center rounded-lg">
+                <span id="scorebox" class="w-full h-full flex justify-center items-center font-bold font-sans"></span>
+            </div>
+            <div id="pause" class="w-12 h-12 bg-blue-500 rounded-xl hover:scale-110 hover:bg-blue-600 duration-300 flex justify-center items-center">
+                    <img class="w-3/4 h-3/4 flex justify-center items-center xl:translate-x-[-0.5px]" src="src/icon/pause-solid-full.svg" alt="">
+            </div>
+        </div>
+        <!-- scoreboard -->
+        <!-- game field -->
+        <div class="w-full h-[55%] flex items-center justify-center relative">
+            <div
+                class="w-70 h-70 lg:w-85 lg:h-85 rounded-[5px] bg-gray-500 absolute top-[15%] flex justify-center items-center">
+                <div id="field" class="w-[95%] h-[95%] bg-gray-500 *:bg-white *:rounded-[3px] grid grid-cols-10 gap-2 **:duration-200">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <!-- game field -->
+        <!-- button -->
+        <div class="w-full h-[35%] flex flex-wrap justify-center items-center relative">
+            <!-- game buttons -->
+            <div class="w-full h-full flex justify-center items-center">
+                <div class="w-150 h-60">
+                    <div class="w-full h-1/3 flex justify-center">
+                        <img id="up" class="w-1/9 h-full rotate-90 bg-blue-500 rounded-lg hover:scale-115 duration-300 hover:bg-blue-600"
+                            src="src/icon/arrowbackiosnew.svg" alt="">
+                    </div>
+                    <div
+                        class="w-full h-1/3 flex justify-center *:h-full *:w-1/9 *:bg-blue-500 *:rounded-lg *:hover:scale-115 *:duration-300 gap-30 *:hover:bg-blue-600">
+                        <img id="left" src="src/icon/arrowbackiosnew.svg" alt="">
+                        <img id="right" class="rotate-180" src="src/icon/arrowbackiosnew.svg" alt="">
+                    </div>
+                    <div class="w-full h-1/3 flex justify-center">
+                        <img id="down" class="w-1/9 h-full bg-blue-500 text-white -rotate-90 rounded-lg hover:scale-115 duration-300 hover:bg-blue-600"
+                            src="src/icon/arrowbackiosnew.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <!-- game buttons -->
+        </div>
+        <!-- button -->
+        <!-- menu -->
+        <div id="cover"
+            class="w-full h-full bg-gray-700 opacity-70 absolute top-0 left-0 z-3 flex justify-center items-center">
+        </div>
+        <div id="menu"
+            class="w-80 h-100 bg-blue-100 absolute top-30 z-5 rounded-2xl outline-5 -outline-offset-10 outline-blue-500 flex flex-wrap">
+            <div class="w-full h-1/4 flex justify-center items-end">
+                <div
+                    class="resume w-6/10 h-6/10 bg-blue-500 rounded-lg flex justify-center items-center text-2xl font-bold text-white hover:scale-105 hover:bg-blue-700 duration-300">
+                    RESUME</div>
+            </div>
+            <div class="w-full h-1/4 flex justify-center items-center">
+                <div
+                    class="restart w-6/10 h-6/10 bg-blue-500 rounded-lg flex justify-center items-center text-2xl font-bold text-white hover:scale-105 hover:bg-blue-700 duration-300">
+                    RESTART</div>
+            </div>
+            <div class="w-full h-1/2 flex justify-center items-center">
+                <img class="w-[60%] h-full" src="src/img/snake1.png" alt="">
+            </div>
+        </div>
+        <!-- menu -->
+        <!-- lost alert -->
+         <div id="lose_menu" class="w-80 h-60 bg-blue-100 absolute top-30 z-5 rounded-2xl outline-5 -outline-offset-10 outline-blue-500 flex flex-wrap">
+            <div class="w-full h-1/3 flex justify-center items-center">
+                <p class="text-2xl font-bold text-red-600 mt-3!">YOU LOST</p>
+            </div>
+            <div class="w-full h-1/3 flex justify-center items-center">
+                <p class="text-xl font-bold mb-3!">YOUR SCORE: <span class="final_score"></span></p>
+            </div>
+            <div class="w-full h-1/3 flex justify-center items-start">
+                <div class="restart_lost w-6/10 h-6/10 bg-blue-500 rounded-lg flex justify-center items-center text-2xl font-bold text-white hover:scale-105 hover:bg-blue-700 duration-300">
+                    RESTART</div>
+            </div>
+        </div>
+        <!-- lost alert -->
+    </div>
+    <!-- footer -->
+    <div class="w-50 h-35 md:w-65 md:h-45 xl:w-75 xl:h-55 absolute bottom-5 right-5 flex group">
+        
+        <!-- start socials//////// -->
+        
+        <div class="w-15 h-full md:w-20 row items-center">
+            
+            <!-- start rows////// -->
+            
+            <div class="h-[80%] w-full *:w-full *:h-1/4 *:-ml-2!">
+                
+                
+                <div class="flex justify-end">
+                    <div class="bg-[#000000d7] h-[80%] w-[35%] xl:w-[40%] flex justify-center items-center rounded-[5px] hover:scale-130 hover:bg-[#696969] duration-300 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0">
+                        <a class="mb-0.5! text-white md:scale-140 xl:scale-160" href="https://www.instagram.com/yasintorkzaban.dev/?hl=en">
+                            <i class="icon-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end">
+                    <div class="bg-[#000000d7] h-[80%] w-[35%] xl:w-[40%] flex justify-center items-center rounded-[5px] hover:scale-130 hover:bg-[#696969] duration-300 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0">
+                        <a class="mb-0.5! md:mb-1! text-white md:scale-120 xl:scale-140" href="mailto:yasin.torkzaban@gmail.com">
+                            <i class="icon-mail-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end">
+                    <div class="bg-[#000000d7] h-[80%] w-[35%] xl:w-[40%] flex justify-center items-center rounded-[5px] hover:scale-130 hover:bg-[#696969] duration-300 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0">
+                        <a class="mb-0.5! text-white md:scale-120 xl:scale-140" href="https://www.linkedin.com/in/yasin-torkzaban-b36171365/">
+                            <i class="icon-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end">
+                    <div class="bg-[#000000d7] h-[80%] w-[35%] xl:w-[40%] flex justify-center items-center rounded-[5px] hover:scale-130 hover:bg-[#696969] duration-300 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0">
+                        <a class="mb-0.5! text-white md:scale-120 xl:scale-140" href="https://github.com/YasinTorkzaban">
+                            <i class="icon-github-circled-alt2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                
+            </div>
+            
+            <!-- end of rows///// -->
+            
+        </div>
+        
+        <!-- end of socials///// -->
+        
+        <!-- start profile///// -->
+        
+        <div style="border-radius: 71% 29% 31% 69% / 44% 43% 57% 56% ; background-image: url(footer/src/img/3.JPG);"
+        class="w-35 h-full md:w-45 xl:w-55 bg-cover"></div>
+        
+        
+        <!-- end of profile///////// -->
+        
+    </div>
+    <!-- footer -->
+</body>
+
+</html>
+<script src="src/js/main.js"></script>
