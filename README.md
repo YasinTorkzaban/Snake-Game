@@ -33,7 +33,7 @@ The game is designed to work smoothly on different screen sizes, including:
 
 ## 🚀 Live Demo
 
-
+[Online Demo](https://yasintorkzaban.github.io/Snake-Game/)
 
 ## 📸 Screenshots
 
