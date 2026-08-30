@@ -44,7 +44,7 @@ The game is designed to work smoothly on different screen sizes, including:
 1. Clone the repository:
 
 ```bash
-git clone <your-repository-link>
+git clone https://github.com/YasinTorkzaban/Snake-Game.git
 ```
 
 2. Open the project folder.
